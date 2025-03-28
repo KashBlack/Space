@@ -1,16 +1,4 @@
-const config = {
-    type: Phaser.AUTO,
-    width: 800,
-    height: 600,
-    parent: 'game-container',
-    scene: [MenuScene, GameScene, GameOverScene],
-    physics: {
-        default: 'arcade',
-        arcade: { debug: false }
-    }
-};
-const game = new Phaser.Game(config);
-
+// Define scenes first
 class MenuScene extends Phaser.Scene {
     constructor() {
         super('MenuScene');
@@ -92,3 +80,17 @@ class GameOverScene extends Phaser.Scene {
         });
     }
 }
+
+// Define config and start game after classes
+const config = {
+    type: Phaser.AUTO,
+    width: 800,
+    height: 600,
+    parent: 'game-container',
+    scene: [MenuScene, GameScene, GameOverScene],
+    physics: {
+        default: 'arcade',
+        arcade: { debug: false }
+    }
+};
+const game = new Phaser.Game(config);
