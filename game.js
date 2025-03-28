@@ -52,12 +52,14 @@ class GameScene extends Phaser.Scene {
         for (let i = 0; i < 2 + Math.floor(this.score / 5); i++) {
             const x = Phaser.Math.Between(0, 800);
             const y = Phaser.Math.Between(0, 600);
-            this.stars.create(x, y, null, null).setCircle(10, 0xffffff);
+            const star = this.add.circle(x, y, 10, 0xffffff);
+            this.stars.add(star);
         }
         if (Phaser.Math.Between(0, 100) < 20 + this.score) {
             const x = Phaser.Math.Between(0, 800);
             const y = Phaser.Math.Between(0, 600);
-            this.planets.create(x, y, null, null).setCircle(30, 0xff0000);
+            const planet = this.add.circle(x, y, 30, 0xff0000);
+            this.planets.add(planet);
         }
     }
     checkCollision(obj1, obj2) {
