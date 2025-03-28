@@ -7,7 +7,10 @@ class MenuScene extends Phaser.Scene {
         this.add.text(400, 200, 'Space Hole', { fontSize: '64px', color: '#fff' }).setOrigin(0.5);
         const playButton = this.add.text(400, 400, 'Play', { fontSize: '32px', color: '#fff' }).setOrigin(0.5);
         playButton.setInteractive();
-        playButton.on('pointerdown', () => this.scene.start('GameScene'));
+        playButton.on('pointerdown', () => {
+            console.log('Play button clicked!');
+            this.scene.start('GameScene');
+        });
     }
 }
 
