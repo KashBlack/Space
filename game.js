@@ -1,4 +1,3 @@
-// Define scenes first
 class MenuScene extends Phaser.Scene {
     constructor() {
         super('MenuScene');
@@ -86,7 +85,6 @@ class GameOverScene extends Phaser.Scene {
     }
 }
 
-// Define config and start game after classes
 const config = {
     type: Phaser.AUTO,
     width: 800,
