@@ -17,17 +17,24 @@ class GameScene extends Phaser.Scene {
     constructor() {
         super('GameScene');
     }
-    preload() {}
+    preload() {
+        this.load.image('black-hole', 'black-hole.png');
+        this.load.image('star', 'star.png');
+        this.load.image('planet', 'planet.png');
+    }
     create() {
         this.score = 0;
         this.scoreText = this.add.text(10, 10, 'Score: 0', { fontSize: '24px', color: '#fff' });
-        this.blackHole = this.add.circle(400, 300, 20, 0x000000);
+
+        this.blackHole = this.physics.add.sprite(400, 300, 'black-hole').setScale(1);
         this.blackHole.setInteractive();
         this.input.setDraggable(this.blackHole);
         this.input.on('drag', (pointer, gameObject, dragX, dragY) => {
+            console.log('Dragging black hole at:', dragX, dragY);
             gameObject.x = dragX;
             gameObject.y = dragY;
         });
+
         this.stars = this.add.group();
         this.planets = this.add.group();
         this.spawnObjects();
@@ -51,13 +58,13 @@ class GameScene extends Phaser.Scene {
         for (let i = 0; i < 2 + Math.floor(this.score / 5); i++) {
             const x = Phaser.Math.Between(0, 800);
             const y = Phaser.Math.Between(0, 600);
-            const star = this.add.circle(x, y, 10, 0xffffff);
+            const star = this.physics.add.sprite(x, y, 'star').setScale(1);
             this.stars.add(star);
         }
         if (Phaser.Math.Between(0, 100) < 20 + this.score) {
             const x = Phaser.Math.Between(0, 800);
             const y = Phaser.Math.Between(0, 600);
-            const planet = this.add.circle(x, y, 30, 0xff0000);
+            const planet = this.physics.add.sprite(x, y, 'planet').setScale(1);
             this.planets.add(planet);
         }
     }
